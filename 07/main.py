@@ -14,7 +14,6 @@ class Directory:
             base += u.get_most(most)
         return base
 
-
     def get_dir(self, levels):
         curr = self
         if levels == []:
@@ -31,14 +30,6 @@ class Directory:
             if val < minimal and val >= max:
                 minimal = val
         return minimal
-
-
-    def show(self, f=3) -> str:
-        print(f"{' '*(f-3)}{self.name} : {self.get_size()}")
-        for l in self.subs.values():
-            l.show(f+3)
-
-
 
 with open("input") as f:
     root = Directory("root")
@@ -66,8 +57,6 @@ with open("input") as f:
             dir_size = sum([int(x.split()[0]) for x in content if not x.startswith("dir")])
             dir = root.get_dir(levels)
             dir.filesSize = dir_size
-
-    root.show()
     print("Total sum with most 100 000: ", root.get_most(100_000))
     print("Smallest : ", root.get_smallest(30000000 - (70000000 - root.get_size())))
             
